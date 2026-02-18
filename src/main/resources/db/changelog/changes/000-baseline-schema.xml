@@ -1,0 +1,136 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="Unnikr" id="1771414495652-1">
+        <createTable tableName="employee_detail">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="employee_detail_pkey"/>
+            </column>
+            <column name="admin" type="BOOLEAN"/>
+            <column name="blood_group" type="VARCHAR(255)"/>
+            <column name="contact_no" type="VARCHAR(255)"/>
+            <column name="dob" type="date"/>
+            <column name="doj" type="date"/>
+            <column name="gender" type="VARCHAR(255)"/>
+            <column name="height" type="FLOAT8"/>
+            <column name="joining_fee" type="FLOAT8"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="weight" type="FLOAT8"/>
+            <column name="is_admin" type="BOOLEAN"/>
+            <column name="expiry_from" type="date"/>
+            <column name="expiry_to" type="date"/>
+            <column name="is_active" type="BOOLEAN"/>
+            <column name="photo_url" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Unnikr" id="1771414495652-2">
+        <createTable tableName="expense">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="expense_pkey"/>
+            </column>
+            <column name="amount" type="FLOAT8"/>
+            <column name="date" type="date"/>
+            <column name="expense_name" type="VARCHAR(255)"/>
+            <column name="remarks" type="VARCHAR(255)"/>
+            <column name="paid_by_employee_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Unnikr" id="1771414495652-3">
+        <createTable tableName="gym_settings">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="gym_settings_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(500)"/>
+            <column name="effective_from" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="effective_to" type="date"/>
+            <column name="is_active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="setting_key" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="setting_value" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Unnikr" id="1771414495652-4">
+        <createTable tableName="holiday_details">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="holiday_details_pkey"/>
+            </column>
+            <column name="holiday_month_year" type="VARCHAR(255)"/>
+            <column name="number_of_holidays" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Unnikr" id="1771414495652-5">
+        <createTable tableName="partners">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="partners_pkey"/>
+            </column>
+            <column name="contact_no" type="VARCHAR(255)"/>
+            <column name="employee_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="partner_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profit_share_percentage" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="remarks" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Unnikr" id="1771414495652-6">
+        <createTable tableName="payment_record">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="payment_record_pkey"/>
+            </column>
+            <column name="admission_amount" type="FLOAT8"/>
+            <column name="advanced_amount" type="FLOAT8"/>
+            <column name="amount" type="FLOAT8"/>
+            <column name="due_date" type="date"/>
+            <column name="is_admission_fee" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_paid" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="paid_amount" type="FLOAT8"/>
+            <column name="paid_on" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="payment_mode" type="VARCHAR(255)"/>
+            <column name="reference_id" type="VARCHAR(255)"/>
+            <column name="remarks" type="VARCHAR(255)"/>
+            <column name="employee_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="collected_by_employee_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Unnikr" id="1771414495652-7">
+        <createTable tableName="punch_details">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="punch_details_pkey"/>
+            </column>
+            <column name="log_date_time" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="employee_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Unnikr" id="1771414495652-8">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="punch_details" constraintName="fk2uy1lrdbpg6l662bpypmq5x2v" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employee_detail" validate="true"/>
+    </changeSet>
+    <changeSet author="Unnikr" id="1771414495652-9">
+        <addForeignKeyConstraint baseColumnNames="collected_by_employee_id" baseTableName="payment_record" constraintName="fkfu6g41254lcf6ox41ay240hf1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employee_detail" validate="true"/>
+    </changeSet>
+    <changeSet author="Unnikr" id="1771414495652-10">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="payment_record" constraintName="fkob0torx0khvwo9x4345rgnv6e" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employee_detail" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

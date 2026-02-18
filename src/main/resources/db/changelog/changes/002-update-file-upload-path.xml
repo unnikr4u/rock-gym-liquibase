@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd">
+
+    <changeSet id="002-update-file-upload-path" author="system">
+        <comment>Update file upload directory path to absolute path</comment>
+        
+        <update tableName="gym_settings">
+            <column name="setting_value" value="C:/uploads/employee-photos"/>
+            <column name="updated_at" valueComputed="CURRENT_TIMESTAMP"/>
+            <where>setting_key = 'file.upload.dir'</where>
+        </update>
+
+        <rollback>
+            <update tableName="gym_settings">
+                <column name="setting_value" value="uploads/employee-photos"/>
+                <column name="updated_at" valueComputed="CURRENT_TIMESTAMP"/>
+                <where>setting_key = 'file.upload.dir'</where>
+            </update>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

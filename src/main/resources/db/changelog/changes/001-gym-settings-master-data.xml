@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd">
+
+    <changeSet id="001-gym-settings-master-data" author="system">
+        <comment>Insert default gym settings master data</comment>
+        
+        <!-- Monthly Fee Setting -->
+        <insert tableName="gym_settings">
+            <column name="setting_key" value="MONTHLY_FEE"/>
+            <column name="setting_value" value="600.00"/>
+            <column name="effective_from" valueDate="2026-02-16"/>
+            <column name="effective_to" value="null"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="description" value="Monthly membership fee"/>
+            <column name="created_at" valueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_at" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <!-- Admission Fee Setting -->
+        <insert tableName="gym_settings">
+            <column name="setting_key" value="ADMISSION_FEE"/>
+            <column name="setting_value" value="1000.00"/>
+            <column name="effective_from" valueDate="2026-02-16"/>
+            <column name="effective_to" value="null"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="description" value="One-time admission fee"/>
+            <column name="created_at" valueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_at" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <!-- File Upload Directory Setting -->
+        <insert tableName="gym_settings">
+            <column name="setting_key" value="file.upload.dir"/>
+            <column name="setting_value" value="C:/uploads/employee-photos"/>
+            <column name="effective_from" valueDate="2026-02-16"/>
+            <column name="effective_to" value="null"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="description" value="Directory path for storing employee photos"/>
+            <column name="created_at" valueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_at" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <rollback>
+            <delete tableName="gym_settings">
+                <where>setting_key IN ('MONTHLY_FEE', 'ADMISSION_FEE', 'file.upload.dir')</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
