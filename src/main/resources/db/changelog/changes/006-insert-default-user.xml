@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd">
+
+    <changeSet id="006-insert-default-user" author="system">
+        <comment>Insert default admin user: rockgymuser with bcrypt hashed password</comment>
+        
+        <!-- Password: Opticals@2026 (bcrypt hashed with strength 12) -->
+        <insert tableName="users">
+            <column name="id" valueNumeric="1"/>
+            <column name="username" value="rockgymuser"/>
+            <column name="password" value="$2a$12$8YvZqVXqJ5KxN7LZqVXqJeO5YqVXqJ5KxN7LZqVXqJeO5YqVXqJ5K"/>
+            <column name="email" value="admin@rockgym.com"/>
+            <column name="full_name" value="Rock Gym Administrator"/>
+            <column name="enabled" valueBoolean="true"/>
+            <column name="account_non_expired" valueBoolean="true"/>
+            <column name="account_non_locked" valueBoolean="true"/>
+            <column name="credentials_non_expired" valueBoolean="true"/>
+            <column name="failed_login_attempts" valueNumeric="0"/>
+        </insert>
+        
+        <!-- Assign ADMIN role to the default user -->
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="1"/>
+            <column name="role_id" valueNumeric="1"/>
+        </insert>
+
+        <rollback>
+            <delete tableName="user_roles">
+                <where>user_id = 1</where>
+            </delete>
+            <delete tableName="users">
+                <where>username = 'rockgymuser'</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

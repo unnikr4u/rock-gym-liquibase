@@ -14,5 +14,12 @@
     <!-- Updates -->
     <include file="db/changelog/changes/002-update-file-upload-path.xml"/>
     <include file="db/changelog/changes/003-update-file-upload-path-v2.xml"/>
+    
+    <!-- Authentication and Authorization -->
+    <include file="db/changelog/changes/004-create-auth-tables.xml"/>
+    <include file="db/changelog/changes/005-insert-default-roles.xml"/>
+    <include file="db/changelog/changes/006-insert-default-user.xml"/>
+    <include file="db/changelog/changes/007-update-default-user-password.xml"/>
+    <include file="db/changelog/changes/008-fix-user-password.xml"/>
 
 </databaseChangeLog>
